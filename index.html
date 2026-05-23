@@ -1,0 +1,485 @@
+# Modern Personal Website (HTML, CSS & JavaScript)
+
+Save this as `index.html` and open it in your browser.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subodh Paikrao | Personal Website</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#0f172a;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    .bg-animation{
+      position:fixed;
+      width:100%;
+      height:100vh;
+      top:0;
+      left:0;
+      z-index:-1;
+      overflow:hidden;
+    }
+
+    .circle{
+      position:absolute;
+      border-radius:50%;
+      background:rgba(0,255,255,0.08);
+      animation:float 10s infinite linear;
+    }
+
+    .circle:nth-child(1){
+      width:220px;
+      height:220px;
+      top:10%;
+      left:10%;
+    }
+
+    .circle:nth-child(2){
+      width:320px;
+      height:320px;
+      bottom:5%;
+      right:10%;
+      animation-duration:15s;
+    }
+
+    .circle:nth-child(3){
+      width:160px;
+      height:160px;
+      top:50%;
+      left:50%;
+      animation-duration:8s;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0px) rotate(0deg);
+      }
+      50%{
+        transform:translateY(-40px) rotate(180deg);
+      }
+      100%{
+        transform:translateY(0px) rotate(360deg);
+      }
+    }
+
+    nav{
+      width:100%;
+      padding:20px 10%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      backdrop-filter:blur(10px);
+      background:rgba(15,23,42,0.5);
+      z-index:1000;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      color:#00ffff;
+    }
+
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:30px;
+    }
+
+    nav ul li a{
+      text-decoration:none;
+      color:white;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      color:#00ffff;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:0 10%;
+    }
+
+    .hero-content h1{
+      font-size:70px;
+      margin-bottom:20px;
+      line-height:1.1;
+    }
+
+    .hero-content h1 span{
+      color:#00ffff;
+    }
+
+    .hero-content p{
+      font-size:20px;
+      max-width:800px;
+      margin:auto;
+      color:#cbd5e1;
+      line-height:1.8;
+    }
+
+    .btn{
+      display:inline-block;
+      margin-top:35px;
+      padding:15px 35px;
+      background:#00ffff;
+      color:#0f172a;
+      text-decoration:none;
+      font-weight:600;
+      border-radius:50px;
+      transition:0.4s;
+      box-shadow:0 0 25px rgba(0,255,255,0.5);
+    }
+
+    .btn:hover{
+      transform:translateY(-5px) scale(1.05);
+    }
+
+    section{
+      padding:100px 10%;
+    }
+
+    .section-title{
+      font-size:45px;
+      text-align:center;
+      margin-bottom:60px;
+      color:#00ffff;
+    }
+
+    .about{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:50px;
+      align-items:center;
+    }
+
+    .about img{
+      width:100%;
+      border-radius:30px;
+      box-shadow:0 0 30px rgba(0,255,255,0.2);
+    }
+
+    .about-text p{
+      line-height:1.9;
+      color:#cbd5e1;
+      font-size:18px;
+    }
+
+    .skills-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+    }
+
+    .skill-box{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      padding:30px;
+      border-radius:20px;
+      text-align:center;
+      transition:0.4s;
+      backdrop-filter:blur(10px);
+    }
+
+    .skill-box:hover{
+      transform:translateY(-10px);
+      border-color:#00ffff;
+      box-shadow:0 0 20px rgba(0,255,255,0.2);
+    }
+
+    .skill-box h3{
+      margin-top:10px;
+      font-size:24px;
+    }
+
+    .projects{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .project-card{
+      background:rgba(255,255,255,0.05);
+      border-radius:20px;
+      overflow:hidden;
+      transition:0.4s;
+      border:1px solid rgba(255,255,255,0.1);
+    }
+
+    .project-card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 0 20px rgba(0,255,255,0.2);
+    }
+
+    .project-card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .project-content{
+      padding:25px;
+    }
+
+    .project-content h3{
+      margin-bottom:10px;
+    }
+
+    .project-content p{
+      color:#cbd5e1;
+      line-height:1.7;
+    }
+
+    .contact-box{
+      max-width:700px;
+      margin:auto;
+      text-align:center;
+      background:rgba(255,255,255,0.05);
+      padding:50px;
+      border-radius:25px;
+      border:1px solid rgba(255,255,255,0.1);
+    }
+
+    .contact-box p{
+      margin:15px 0;
+      color:#cbd5e1;
+      font-size:18px;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px;
+      border-top:1px solid rgba(255,255,255,0.1);
+      color:#94a3b8;
+    }
+
+    @media(max-width:900px){
+      .hero-content h1{
+        font-size:50px;
+      }
+
+      .about{
+        grid-template-columns:1fr;
+      }
+
+      nav{
+        flex-direction:column;
+        gap:15px;
+      }
+
+      nav ul{
+        gap:15px;
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+    }
+
+    @media(max-width:600px){
+      .hero-content h1{
+        font-size:38px;
+      }
+
+      .hero-content p{
+        font-size:16px;
+      }
+
+      .section-title{
+        font-size:35px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-animation">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
+  <nav>
+    <div class="logo">Subodh Paikrao</div>
+
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Hello, I'm <span>Subodh</span></h1>
+
+      <p>
+        A passionate Frontend Developer and creative web designer who loves
+        building modern websites, animations, interactive UI designs and
+        futuristic web experiences using HTML, CSS, JavaScript, React and Next.js.
+      </p>
+
+      <a href="#contact" class="btn">Contact Me</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+
+    <div class="about">
+      <img src="myphoto.jpg" alt="Profile Image">
+
+      <div class="about-text">
+        <p>
+          I enjoy creating responsive websites with smooth animations,
+          modern layouts and premium user experiences. I am currently
+          learning advanced frontend development and building creative
+          projects using Next.js and JavaScript.
+          
+          I love experimenting with futuristic UI designs, cinematic
+          visuals and interactive web effects.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title">My Skills</h2>
+
+    <div class="skills-container">
+      <div class="skill-box">
+        <h3>HTML</h3>
+      </div>
+
+      <div class="skill-box">
+        <h3>CSS</h3>
+      </div>
+
+      <div class="skill-box">
+        <h3>JavaScript</h3>
+      </div>
+
+      <div class="skill-box">
+        <h3>React</h3>
+      </div>
+
+      <div class="skill-box">
+        <h3>Next.js</h3>
+      </div>
+
+      <div class="skill-box">
+        <h3>UI/UX Design</h3>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+
+    <div class="projects">
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1172&auto=format&fit=crop" alt="Project">
+
+        <div class="project-content">
+          <h3>Modern Portfolio Website</h3>
+          <p>
+            Created a stylish responsive portfolio website with animations,
+            smooth scrolling and interactive sections.
+          </p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1170&auto=format&fit=crop" alt="Project">
+
+        <div class="project-content">
+          <h3>3D Animation Website</h3>
+          <p>
+            Built interactive web animations and creative visual effects
+            using HTML, CSS and JavaScript.
+          </p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1170&auto=format&fit=crop" alt="Project">
+
+        <div class="project-content">
+          <h3>Creative UI Design</h3>
+          <p>
+            Designed futuristic user interfaces with modern layouts,
+            glassmorphism and smooth transitions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact Me</h2>
+
+    <div class="contact-box">
+      <p><strong>Email:</strong> paikraosubodh07@gmail.com</p>
+      <p><strong>Phone:</strong> +91 9284025089</p>
+      <p><strong>Location:</strong> Pune, Maharashtra</p>
+
+      <a href="mailto:paikraosubodh07@gmail.com" class="btn">Send Email</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Subodh Paikrao • Personal Website</p>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('section');
+
+    window.addEventListener('scroll', () => {
+      sections.forEach(section => {
+        const top = window.scrollY;
+        const offset = section.offsetTop - 300;
+
+        if(top > offset){
+          section.style.opacity = '1';
+          section.style.transform = 'translateY(0px)';
+        }
+      })
+    })
+
+    sections.forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(50px)';
+      section.style.transition = '1s';
+    })
+  </script>
+
+</body>
+</html>
+```
+
